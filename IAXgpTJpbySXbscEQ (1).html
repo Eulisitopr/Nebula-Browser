@@ -1,0 +1,149 @@
+<html><head><base href="https://nebulabrowser.com/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Nebula Browser - Explora el Universo Digital</title><style>
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #0a0a2a;
+    color: #ffffff;
+    height: 100%;
+    overflow: hidden;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+header {
+    background: #1a1a4a;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+.search-bar {
+    flex-grow: 1;
+    margin: 0 20px;
+    position: relative;
+}
+#search-input {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    border: none;
+    border-radius: 20px;
+    background: #ffffff;
+    color: #0a0a2a;
+}
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    fill: #0a0a2a;
+}
+.content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.planet {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #4a90e2, #1a1a4a);
+    position: relative;
+    animation: rotate 20s linear infinite;
+}
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.orbit {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+</style></head><body><div class="container"><header>
+    <svg class="logo" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" fill="#4a90e2"/>
+        <path d="M50 20 L80 80 L20 80 Z" fill="#ffffff"/>
+    </svg>
+    <h1>Nebula Browser</h1>
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Explora el universo digital...">
+        <svg class="search-icon" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+    </div>
+</header><div class="content">
+    <div class="stars"></div>
+    <div class="planet">
+        <div class="orbit"></div>
+    </div>
+</div></div><script>
+// Crear estrellas
+function createStars() {
+    const stars = document.querySelector('.stars');
+    for (let i = 0; i < 200; i++) {
+        const star = document.createElement('div');
+        star.style.position = 'absolute';
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.width = `${Math.random() * 3}px`;
+        star.style.height = star.style.width;
+        star.style.backgroundColor = 'white';
+        star.style.borderRadius = '50%';
+        star.style.opacity = Math.random();
+        star.style.animation = `twinkle ${Math.random() * 5 + 3}s linear infinite`;
+        stars.appendChild(star);
+    }
+}
+
+// Animación de estrellas
+const starAnimation = `
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}`;
+const styleElement = document.createElement('style');
+styleElement.textContent = starAnimation;
+document.head.appendChild(styleElement);
+
+createStars();
+
+// Funcionalidad de búsqueda
+document.getElementById('search-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        const searchTerm = this.value;
+        if (searchTerm) {
+            window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`;
+        }
+    }
+});
+</script></body></html>
